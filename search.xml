@@ -135,7 +135,7 @@
   <entry>
     <title>图片测试</title>
     <url>/2021/10/06/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<p><img src="fileimages%5Ctest.jpeg" alt="test"></p>
+    <content><![CDATA[<p>![test](<a href="https://github.com/Zone-Too/Zone-Too.github.io/blob/master/fileimages/test.jpeg">Zone-Too.github.io/test.jpeg at master · Zone-Too/Zone-Too.github.io</a>)</p>
 ]]></content>
       <categories>
         <category>博客</category>
