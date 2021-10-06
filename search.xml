@@ -135,9 +135,7 @@
   <entry>
     <title>图片测试</title>
     <url>/2021/10/06/testimage/</url>
-    <content><![CDATA[<p>图片哈哈哈哈哈</p>
-<p>! <a href="test.jpeg">testimage</a></p>
-<p><img src="test.jpeg" alt="testimaeg2"></p>
+    <content><![CDATA[<p><img src="test.jpeg" alt="testimaeg2"></p>
 ]]></content>
       <categories>
         <category>生活</category>
