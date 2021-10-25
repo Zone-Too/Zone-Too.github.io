@@ -319,7 +319,7 @@
   <entry>
     <title>Jsp课程设计（学生信息管理系统）</title>
     <url>/2021/10/25/Jsp%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%EF%BC%88%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%EF%BC%89/</url>
-    <content><![CDATA[<p>写在最前：该系统试一次课程设计，仅供参考。源码地址：<a href="https://github.com/Zone-Too/Jspclasswork">Zone-Too/Jspclasswork (github.com)</a></p>
+    <content><![CDATA[<p>写在最前：该系统是一次课程设计，<strong>仅供参考</strong>。<strong>源码地址：</strong><a href="https://github.com/Zone-Too/Jspclasswork">Zone-Too/Jspclasswork (github.com)</a></p>
 <span id="more"></span>
 
 <h4 id="一、使用工具："><a href="#一、使用工具：" class="headerlink" title="一、使用工具："></a>一、使用工具：</h4><p><strong>jsp</strong> + <strong>JavaScript</strong> + <strong>servlet</strong> + <strong>Apache-Tomcat v9.0</strong> +  <strong>MySql</strong> + <strong>jdk13</strong> + <strong>ecplise</strong></p>
