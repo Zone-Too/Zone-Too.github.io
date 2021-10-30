@@ -467,4 +467,26 @@
         <tag>-Jsp</tag>
       </tags>
   </entry>
+  <entry>
+    <title>hexo 博客使用教程</title>
+    <url>/2021/10/30/hexo-%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>关于hexo发布博客的一些使用教程</p>
+<span id="more"></span>
+
+<h4 id="1、主要命令"><a href="#1、主要命令" class="headerlink" title="1、主要命令"></a>1、主要命令</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean //清除缓存文件 db.json 和已生成的静态文件 public ，一般情况下不用</span><br><span class="line">hexo g //生成网站静态文件到默认设置的 public 文件夹</span><br><span class="line">hexo s //启动本地服务器，用于预览主题。默认地址： http://localhost:4000/</span><br><span class="line">hexo d //自动生成网站静态文件，并部署到设定的仓库</span><br><span class="line">hexo new &quot;文件名 六&quot; //新建一篇标题为 文件名 六 的文章，因为标题里有空格，所以加上了引号。</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、文章如果有图片，图片链接的处理方式"><a href="#2、文章如果有图片，图片链接的处理方式" class="headerlink" title="2、文章如果有图片，图片链接的处理方式"></a>2、文章如果有图片，图片链接的处理方式</h4><p>在创建文章的时候（使用<code>hexo new &quot;文件名 六&quot;</code>创建文章时），会同步生成一个同名的文件夹，只需要把需要的图片修改好名字（url.jpg）放在该文件夹里面即可，Markdown文件中图片的链接为</p>
+<p><code>![](url.jpg)</code></p>
+<h4 id="3、文章“阅读更多”的写法"><a href="#3、文章“阅读更多”的写法" class="headerlink" title="3、文章“阅读更多”的写法"></a>3、文章“阅读更多”的写法</h4><p>只需要在想要开始隐藏的文本的上方写入以下代码：</p>
+<p><code>&lt;!-- more --&gt;</code></p>
+<h4 id="4、在github上上传新的项目的方法"><a href="#4、在github上上传新的项目的方法" class="headerlink" title="4、在github上上传新的项目的方法"></a>4、在github上上传新的项目的方法</h4><p><a href="https://blog.csdn.net/generallizhong/article/details/94014779?utm_source=app&app_version=4.14.0&code=app_1562916241&uLinkId=usr1mkqgl919blen">手把手教如何将本地项目上传到Github（包会）<em>lizhong-CSDN博客</em></a></p>
+<p><a href="https://blog.csdn.net/generallizhong/article/details/101518533">上传文件到git用命令最简单的方式_lizhong-CSDN博客</a></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>-hexo</tag>
+      </tags>
+  </entry>
 </search>
