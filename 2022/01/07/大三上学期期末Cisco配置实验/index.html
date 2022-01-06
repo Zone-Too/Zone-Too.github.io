@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/silver/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dumupro.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="写在最前：期末复习实验，仅供参考。实验文件（pka）以及配置文件（TXT）地址：Zone-Too&#x2F;Cisco_Finalexam_D3.1 (github.com)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大三上学期期末Cisco配置实验">
+<meta property="og:url" content="http://dumupro.top/2022/01/07/%E5%A4%A7%E4%B8%89%E4%B8%8A%E5%AD%A6%E6%9C%9F%E6%9C%9F%E6%9C%ABCisco%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C/index.html">
+<meta property="og:site_name" content="DUMUPRO">
+<meta property="og:description" content="写在最前：期末复习实验，仅供参考。实验文件（pka）以及配置文件（TXT）地址：Zone-Too&#x2F;Cisco_Finalexam_D3.1 (github.com)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dumupro.top/2022/01/07/%E5%A4%A7%E4%B8%89%E4%B8%8A%E5%AD%A6%E6%9C%9F%E6%9C%9F%E6%9C%ABCisco%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C/pkaimage.png">
+<meta property="og:image" content="http://dumupro.top/2022/01/07/%E5%A4%A7%E4%B8%89%E4%B8%8A%E5%AD%A6%E6%9C%9F%E6%9C%9F%E6%9C%ABCisco%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C/errorimage.png">
+<meta property="article:published_time" content="2022-01-06T16:59:31.000Z">
+<meta property="article:modified_time" content="2022-01-06T17:10:02.314Z">
+<meta property="article:author" content="杜沐">
+<meta property="article:tag" content="Cisco">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://dumupro.top/2022/01/07/%E5%A4%A7%E4%B8%89%E4%B8%8A%E5%AD%A6%E6%9C%9F%E6%9C%9F%E6%9C%ABCisco%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C/pkaimage.png">
+
+
+<link rel="canonical" href="http://dumupro.top/2022/01/07/%E5%A4%A7%E4%B8%89%E4%B8%8A%E5%AD%A6%E6%9C%9F%E6%9C%9F%E6%9C%ABCisco%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://dumupro.top/2022/01/07/%E5%A4%A7%E4%B8%89%E4%B8%8A%E5%AD%A6%E6%9C%9F%E6%9C%9F%E6%9C%ABCisco%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C/","path":"2022/01/07/大三上学期期末Cisco配置实验/","title":"大三上学期期末Cisco配置实验"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>大三上学期期末Cisco配置实验 | DUMUPRO</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?08ae219bfdf992537a81b605c6267ba0"></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DUMUPRO</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">杜沐 的 博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="nav-number">1.</span> <span class="nav-text">一、使用工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%A2%98%E7%9B%AE"><span class="nav-number">2.</span> <span class="nav-text">二、题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AF%A6%E8%A7%A3%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">三、详解子网划分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E4%B8%BB%E6%A0%A1%E5%8C%BA"><span class="nav-number">3.1.</span> <span class="nav-text">1、主校区</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81%E8%88%9C%E8%80%95%E6%A0%A1%E5%8C%BA"><span class="nav-number">3.2.</span> <span class="nav-text">2、舜耕校区</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">四、配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E5%9C%A8%E4%B8%89%E5%8F%B0%E4%BA%8C%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA%E4%B8%8A%E9%85%8D%E7%BD%AEvlan"><span class="nav-number">4.1.</span> <span class="nav-text">1、在三台二层交换机上配置vlan</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-%E5%AF%B91J"><span class="nav-number">4.2.</span> <span class="nav-text">① 对1J</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-%E5%AF%B912%EF%BC%88%E4%B8%8E1J%E9%85%8D%E7%BD%AE%E5%A4%A7%E5%90%8C%E5%B0%8F%E5%BC%82%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">② 对12（与1J配置大同小异）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2-%E5%AF%B9Office%EF%BC%88%E4%B8%8E1J%E3%80%8112J%E9%85%8D%E7%BD%AE%E5%A4%A7%E5%90%8C%E5%BC%82%EF%BC%89"><span class="nav-number">4.4.</span> <span class="nav-text">③ 对Office（与1J、12J配置大同异）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81%E5%9C%A8%E4%B8%89%E5%8F%B0%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA%E4%B8%8A%E9%85%8D%E7%BD%AEvlan"><span class="nav-number">4.5.</span> <span class="nav-text">2、在三台三层交换机上配置vlan</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-%E5%AF%B9Core01"><span class="nav-number">4.6.</span> <span class="nav-text">① 对Core01</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-%E5%AF%B9Core02"><span class="nav-number">4.7.</span> <span class="nav-text">② 对Core02</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2-%E5%AF%B9Core03"><span class="nav-number">4.8.</span> <span class="nav-text">③ 对Core03</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81%E5%9C%A8%E4%B8%89%E5%8F%B0%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA%E4%B8%8A%E9%85%8D%E7%BD%AELACP"><span class="nav-number">4.9.</span> <span class="nav-text">3、在三台三层交换机上配置LACP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-%E5%AF%B9Core01-1"><span class="nav-number">4.10.</span> <span class="nav-text">① 对Core01</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-%E5%AF%B9Core02-1"><span class="nav-number">4.11.</span> <span class="nav-text">② 对Core02</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2-%E5%AF%B9Core03-1"><span class="nav-number">4.12.</span> <span class="nav-text">③ 对Core03</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81%E5%9C%A8Core01%E5%92%8CCore02%E4%B8%8A%E9%85%8D%E7%BD%AEPVST"><span class="nav-number">4.13.</span> <span class="nav-text">4、在Core01和Core02上配置PVST</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-%E5%AF%B9Core01-2"><span class="nav-number">4.14.</span> <span class="nav-text">① 对Core01</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-%E5%AF%B9Core02-2"><span class="nav-number">4.15.</span> <span class="nav-text">② 对Core02</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5%E3%80%81%E5%9C%A8Core03%E4%B8%8A%E6%8A%8A%E6%89%80%E6%9C%89vlan%E6%94%BE%E8%A1%8C"><span class="nav-number">4.16.</span> <span class="nav-text">5、在Core03上把所有vlan放行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6%E3%80%81%E8%B7%AF%E7%94%B1%E5%99%A8ZhongXin%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">4.17.</span> <span class="nav-text">6、路由器ZhongXin上的配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-%E9%85%8D%E7%BD%AE%E5%AD%90%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.18.</span> <span class="nav-text">① 配置子接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-%E9%85%8D%E7%BD%AE-IPV4-DHCP"><span class="nav-number">4.19.</span> <span class="nav-text">② 配置 IPV4 DHCP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2-%E9%85%8D%E7%BD%AEIPV6%E8%87%AA%E5%8A%A8%E5%88%86%E9%85%8D"><span class="nav-number">4.20.</span> <span class="nav-text">③ 配置IPV6自动分配</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A3-%E9%85%8D%E7%BD%AE%E4%BA%92%E8%81%94"><span class="nav-number">4.21.</span> <span class="nav-text">④ 配置互联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A4-%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1"><span class="nav-number">4.22.</span> <span class="nav-text">⑤ 配置静态路由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7%E3%80%81-%E4%B8%AD%E5%BF%83%E6%A0%A1%E5%8C%BA%E6%8E%92%E9%99%A4%E6%95%85%E9%9A%9C"><span class="nav-number">4.23.</span> <span class="nav-text">7、 中心校区排除故障</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8%E3%80%81%E9%85%8D%E7%BD%AE%E8%88%9C%E8%80%95%E6%A0%A1%E5%8C%BA%E7%9A%84%E4%BA%8C%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="nav-number">4.24.</span> <span class="nav-text">8、配置舜耕校区的二层交换机</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-SW-WenShiLou-1F-2F"><span class="nav-number">4.25.</span> <span class="nav-text">① SW-WenShiLou-1F-2F</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-SW-WenShiLou-3F-4F"><span class="nav-number">4.26.</span> <span class="nav-text">② SW-WenShiLou-3F-4F</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2-SW-TuShuGuan-1F-2F"><span class="nav-number">4.27.</span> <span class="nav-text">③ SW-TuShuGuan-1F-2F</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A3-SW-TuShuGuan-3F-4F"><span class="nav-number">4.28.</span> <span class="nav-text">④ SW-TuShuGuan-3F-4F</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9%E3%80%81%E9%85%8D%E7%BD%AE%E8%88%9C%E8%80%95%E6%A0%A1%E5%8C%BA%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="nav-number">4.29.</span> <span class="nav-text">9、配置舜耕校区三层交换机</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-%E5%AF%B9SW-WenShiLou"><span class="nav-number">4.30.</span> <span class="nav-text">① 对SW-WenShiLou</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-%E5%AF%B9SW-TuShuGuan"><span class="nav-number">4.31.</span> <span class="nav-text">② 对SW-TuShuGuan</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10%E3%80%81%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8R2-Center-East"><span class="nav-number">4.32.</span> <span class="nav-text">10、配置路由器R2-Center-East</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-%E9%85%8D%E7%BD%AE%E5%AD%90%E6%8E%A5%E5%8F%A3-1"><span class="nav-number">4.33.</span> <span class="nav-text">① 配置子接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-%E9%85%8D%E7%BD%AEIPV4-DHCP"><span class="nav-number">4.34.</span> <span class="nav-text">② 配置IPV4 DHCP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2-%E9%85%8D%E7%BD%AE%E4%BA%92%E8%81%94"><span class="nav-number">4.35.</span> <span class="nav-text">③ 配置互联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A3-%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%EF%BC%88%E7%BC%BA%E7%9C%81%E8%B7%AF%E7%94%B1%EF%BC%89"><span class="nav-number">4.36.</span> <span class="nav-text">④ 配置静态路由（缺省路由）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11%E3%80%81%E5%AF%86%E7%A0%81%E9%85%8D%E7%BD%AE"><span class="nav-number">4.37.</span> <span class="nav-text">11、密码配置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="杜沐"
+      src="/images/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">杜沐</p>
+  <div class="site-description" itemprop="description">功不唐捐</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:1539011985@qq.com" title="E-Mail → mailto:1539011985@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/7312045349" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;7312045349" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.csdn.net/" title="https:&#x2F;&#x2F;www.csdn.net&#x2F;" rel="noopener" target="_blank">CSDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://cn.aliyun.com/" title="https:&#x2F;&#x2F;cn.aliyun.com&#x2F;" rel="noopener" target="_blank">阿里云</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://dumupro.top/2022/01/07/%E5%A4%A7%E4%B8%89%E4%B8%8A%E5%AD%A6%E6%9C%9F%E6%9C%9F%E6%9C%ABCisco%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+      <meta itemprop="name" content="杜沐">
+      <meta itemprop="description" content="功不唐捐">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DUMUPRO">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大三上学期期末Cisco配置实验
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-01-07 00:59:31 / 修改时间：01:10:02" itemprop="dateCreated datePublished" datetime="2022-01-07T00:59:31+08:00">2022-01-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cisco/" itemprop="url" rel="index"><span itemprop="name">Cisco</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>写在最前：期末复习实验，<strong>仅供参考</strong>。<strong>实验文件（pka）以及配置文件（TXT）地址：</strong><a target="_blank" rel="noopener" href="https://github.com/Zone-Too/Cisco_Finalexam_D3.1">Zone-Too/Cisco_Finalexam_D3.1 (github.com)</a></p>
+<span id="more"></span>
+
+<h4 id="一、使用工具"><a href="#一、使用工具" class="headerlink" title="一、使用工具"></a>一、使用工具</h4><p><strong>Cisco Packet Tracer  8.1.0</strong></p>
+<h4 id="二、题目"><a href="#二、题目" class="headerlink" title="二、题目"></a>二、题目</h4><p><img src="pkaimage.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">一、设备规划</span><br><span class="line">中心校区：</span><br><span class="line">1.设备hostname与图上设备名称一致</span><br><span class="line">2.设备使能口令使用加密级别5的秘钥：UJN1948</span><br><span class="line">3.控制台口令：Console1948</span><br><span class="line">4.远程telnet，0 4线程，口令：Telnet1948</span><br><span class="line">5.全局加密明文口令</span><br><span class="line">二、地址规划</span><br><span class="line">1.中心校区：</span><br><span class="line">全网使用10.0.0.0/8进行划分;</span><br><span class="line">IPv6使用2001:db8: acad: :/48进行划分;</span><br><span class="line">路由器“Zhongxin”做IPv4与IPv6自动分配设备，子接口编号与Vlan号一致，地址池命名与Vlan一致。</span><br><span class="line">例如vlan11，地址池命名：VLAN11 </span><br><span class="line"></span><br><span class="line">1J：有线网络使用vlan11，无线网络使用vlan111</span><br><span class="line">第一教学楼有12层：</span><br><span class="line">IPv4使用10.1.0.0/16划分，要求每个楼层1个子网，此处PC-1J使用第12层IP地址（第12个子网IP段），网关选用该网段最后一个可用地址</span><br><span class="line">IPv6在有线网中使用2001:db8:acad:2::/64，网关选用该网段第一个可用地址，该楼使用SLACC方式分配IPv6地址</span><br><span class="line">无线网络采用FAT-AP部署，SSID：Wlan-1J，使用WAP2-PSK验证方式，AES加密方式，秘钥为：Wlan-1J-UJN。使用10.200.0.0/16划分，每网段满足1200个终端与用户，本楼使用第1个网段，网关选用该网段最后一个可用地址</span><br><span class="line"></span><br><span class="line">12J：有线网络使用vlan12，无线网络使用vlan121</span><br><span class="line">第十二教学楼有9层</span><br><span class="line">IPv4使用10.12.0.0/16划分，但因为有机房，要求每网段要满足410台PC规模，此处PC-12J，使用第37个子网网段，网关选用该网段最后一个可用地址</span><br><span class="line">IPv6在有线网中使用2001:db8: acad:2:12: :/64，网关选用该网段第一个可用地址，该楼使用SLACC DHCPv6方式分配IPv6地址</span><br><span class="line">无线网络采用FAT-AP部署，SSID：Wlan-12J，使用WAP2-PSK验证方式，AES加密方式，秘钥为：Wlan-12J-UJN。使用10.200.0.0/16划分，每网段满足1200个终端与用户，本楼使用第12个网段，网关选用该网段最后一个可用地址</span><br><span class="line"></span><br><span class="line">Office：有线网络使用vlan13，无线网络使用vlan131</span><br><span class="line">办公楼有12层</span><br><span class="line">IPv4使用10.100.0.0/16划分，要求每楼层1个子网，此处PC-Office是第4层，满足每层125台主机需求，使用第20个子网IP段，网关选用该网段最后一个可用地址</span><br><span class="line">IPv6在有线网中使用2001:db8: acad:100: :/64，网关选用该网段第一个可用地址，该楼使用DHCPv6方式分配地址</span><br><span class="line">无线网络采用FAT-AP部署，SSID：Wlan-Office，使用WAP2-PSK验证方式，AES加密方式，秘钥为：Wlan-Office-UJN。使用10.200.0.0/16划分，每网段满足1200个终端与用户，本楼使用第31个网段，网关选用该网段最后一个可用地址</span><br><span class="line"></span><br><span class="line">2.舜耕校区</span><br><span class="line">文史楼，172.30.0.0/16进行划分，产生至少15个网络，网关为网段内最后一个可用地址,子接口编号与vlan号一致</span><br><span class="line">PC地址由R2-Center-East动态分配，WenShiLou-1F-PC地址池名称：WenShiLou-1F，vlan10；划分后第3段，</span><br><span class="line">PC地址由R2-Center-East动态分配，WenShiLou-2F-PC地址池名称：WenShiLou-2F，vlan20；划分后第7段，</span><br><span class="line">PC地址由R2-Center-East动态分配，WenShiLou-3F-PC地址池名称：WenShiLou-3F，vlan30；划分后第11段，</span><br><span class="line">PC地址由R2-Center-East动态分配，WenShiLou-4F-PC地址池名称：WenShiLou-4F，vlan40；划分后第15段，</span><br><span class="line">舜耕校区图书馆，172.31.0.0/16进行划分，产生至少1000个网络，网关为网段内最后一个可用地址,子接口编号与vlan号一致</span><br><span class="line">PC地址由R2-Center-East动态分配，TuShuGuan-1F-PC地址池名称：TuShuGuan-1F，vlan110；划分后第3段，</span><br><span class="line">PC地址由R2-Center-East动态分配，TuShuGuan-2F-PC地址池名称：TuShuGuan-2F，vlan120；划分后第10段，</span><br><span class="line">PC地址由R2-Center-East动态分配，TuShuGuan-3F-PC地址池名称：TuShuGuan-3F，vlan130；划分后第15段，</span><br><span class="line">PC地址由R2-Center-East动态分配，TuShuGuan-4F-PC地址池名称：TuShuGuan-4F，vlan140；划分后第29段，</span><br><span class="line"></span><br><span class="line">三、网络拓扑</span><br><span class="line">Core01与Core02分别是位于校内的两个核心机房，由于没有UPS等应急供电设施，为了各楼宇能够安全可靠接入，楼宇分别双上连至Core01与Core02，Core01与Core02同处于校内核心机房的Core03做环形架构，如图，Core01、Core02、Core03之间使用以太网通道技术的LACP协议，均使用active协商模式，Core01与Core02使用组号1，Core02与Core03使用组号2，Core01与Core03使用组号3</span><br><span class="line">考虑到日常线路和设备的冗余，使用PVST生成树技术，Core01作为vlan11,vlan12,vlan13的“主”根桥，作为vlan111,vlan121,vlan131的“次”根桥，Core02作为vlan111,vlan121,vlan131的“主”根桥，作为vlan11,vlan12,vlan13的“次”根桥。</span><br><span class="line"></span><br><span class="line">四、互联、互通及访问：</span><br><span class="line">主校区与舜耕校区使用静态路由互联，所有终端能够互通，主校区“Zhongxin”路由器使用192.168.100.1/30,舜耕校区“R2-Center-East”路由器使用192.168.100.2/30</span><br><span class="line">DNS服务器地址：202.194.64.1，2001:db8:acad:FFFF::1/64</span><br><span class="line">HTTP域名：www.sina.com.cn能够被访问，打开网页即可看到舜耕校区设备密码。（提示：核心机房服务器网路尚存在问题，需先排除故障）</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、详解子网划分"><a href="#三、详解子网划分" class="headerlink" title="三、详解子网划分"></a>三、详解子网划分</h4><p>一般拿到一个题目，第一件事情就是作子网划分，这里详细解析以下子网划分的过程</p>
+<h5 id="1、主校区"><a href="#1、主校区" class="headerlink" title="1、主校区"></a>1、主校区</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">有线部分：</span><br><span class="line">1、对1J：</span><br><span class="line">IPv4使用10.1.0.0/16划分：</span><br><span class="line">10.1.   1    2     3     4     5     6     7     8    .    1    2     3     4     5     6     7     8</span><br><span class="line">10.1.  128  192   224   240   248   252   254   255   .   128  192   224   240   248   252   254   255</span><br><span class="line">要满足12个子网，因为2的4次方大于12，则要从左向右留4位。</span><br><span class="line">子网掩码：255.255.240.0</span><br><span class="line">IP地址：10.1.0.0/20</span><br><span class="line">网段跨度：255-240=15</span><br><span class="line">网络号跨度：256-240=16</span><br><span class="line">1J使用第12个子网IP段：网络号为（12-1）*16=176，网段为：10.1.176.0--10.1.191.255</span><br><span class="line">该段的网关是10.1.191.254</span><br><span class="line"></span><br><span class="line">2、对12J：</span><br><span class="line">IPV4使用10.12.0.0/16划分：</span><br><span class="line">10.12.   1    2     3     4     5     6     7     8    .    1    2     3     4     5     6     7     8</span><br><span class="line">10.12.  128  192   224   240   248   252   254   255   .   128  192   224   240   248   252   254   255</span><br><span class="line">要求每网段要满足410台PC规模，因为2的9次方大于410，则要从右向左留9位。</span><br><span class="line">子网掩码：255.255.254.0</span><br><span class="line">IP地址：10.12.0.0/23</span><br><span class="line">网段跨度：255-254=1</span><br><span class="line">网络号跨度：256-254=2</span><br><span class="line">12J使用第37个子网IP段：网络号为（37-1）*2=72，网段为：10.12.72.0--10.12.73.255</span><br><span class="line">该段的网关是10.12.73.254</span><br><span class="line"></span><br><span class="line">3、对Office：</span><br><span class="line">IPV4使用10.100.0.0/16划分：</span><br><span class="line">10.100.   1    2     3     4     5     6     7     8    .    1    2     3     4     5     6     7     8</span><br><span class="line">10.100.  128  192   224   240   248   252   254   255   .   128  192   224   240   248   252   254   255</span><br><span class="line">满足125台主机需求，2的7次方大于128，则从右往左留8位。</span><br><span class="line">子网掩码：255.255.255.128</span><br><span class="line">IP地址：10.100.0.0/25</span><br><span class="line">网段跨度：255-128=127</span><br><span class="line">网络号跨度：256-128=128</span><br><span class="line">Office使用第20个子网IP段：网络号为（20-1）*128=2432（2432/256=9.5），网段为：10.100.9.128--10.100.9.255</span><br><span class="line">该段的网关是10.100.9.254</span><br><span class="line"></span><br><span class="line">无线部分：</span><br><span class="line">1、对1J：</span><br><span class="line">10.200.    1   2     3     4     5     6     7     8    .    1    2     3     4     5     6     7     8</span><br><span class="line">10.200.  128  192   224   240   248   252   254   255   .   128  192   224   240   248   252   254   255</span><br><span class="line">满足1200个终端与用户（主机），2的11次方大于1200，则从右向左留11位。</span><br><span class="line">子网掩码：255.255.248.0</span><br><span class="line">IP地址：10.200.0.0/21</span><br><span class="line">网段跨度：255-248=7</span><br><span class="line">网络号跨度：256-248=8</span><br><span class="line">本楼使用第1个网段，网段为：10.200.0.0--10.200.7.255</span><br><span class="line">该段的网关是10.200.7.254</span><br><span class="line"></span><br><span class="line">2、对12J：</span><br><span class="line">10.200.    1   2     3     4     5     6     7     8    .    1    2     3     4     5     6     7     8</span><br><span class="line">10.200.  128  192   224   240   248   252   254   255   .   128  192   224   240   248   252   254   255</span><br><span class="line">子网掩码：255.255.248.0</span><br><span class="line">本楼使用第12个网段,网络号为：（12-1）*8=88，网段为：10.200.88.0--10.200.95.255</span><br><span class="line">该段的网关是10.200.95.254</span><br><span class="line"></span><br><span class="line">3、对Office：</span><br><span class="line">10.200.    1   2     3     4     5     6     7     8    .    1    2     3     4     5     6     7     8</span><br><span class="line">10.200.  128  192   224   240   248   252   254   255   .   128  192   224   240   248   252   254   255</span><br><span class="line">子网掩码：255.255.248.0</span><br><span class="line">本楼使用第12个网段,网络号为：（31-1）*8=240，网段为：10.200.240.0--10.200.247.255</span><br><span class="line">该段的网关是10.200.247.254</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、舜耕校区"><a href="#2、舜耕校区" class="headerlink" title="2、舜耕校区"></a>2、舜耕校区</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1、文史楼：</span><br><span class="line">172.30.0.0/16</span><br><span class="line">172.30.   1    2     3     4     5     6     7     8    .    1    2     3     4     5     6     7     8</span><br><span class="line">172.30.  128  192   224   240   248   252   254   255   .   128  192   224   240   248   252   254   255</span><br><span class="line">产生至少15个网络，2的4次方大于15，从左向右取4位</span><br><span class="line">子网掩码：255.255.240.0</span><br><span class="line">网段跨度：255-240=15</span><br><span class="line">网络号跨度：256-240=16</span><br><span class="line">1F：网络号为（3-1）*16=32，网段：172.30.32.0-172.30.47.255，网关：172.30.47.254</span><br><span class="line">2F：网络号为（7-1）*16=96，网段：172.30.96.0-172.30.111.255，网关：172.30.111.254</span><br><span class="line">3F：网络号为（11-1）*16=160，网段：172.30.160.0-172.30.175.255，网关：172.30.175.254</span><br><span class="line">4F：网络号为（15-1）*16=224，网段：172.30.224.0-172.30.239.255，网关：172.30.239.254</span><br><span class="line"></span><br><span class="line">2、图书馆：</span><br><span class="line">172.31.0.0/16</span><br><span class="line">172.31.    1   2     3     4     5     6     7     8    .    1    2     3     4     5     6     7     8</span><br><span class="line">172.31.  128  192   224   240   248   252   254   255   .   128  192   224   240   248   252   254   255</span><br><span class="line">产生至少1000个网络，2的10次方大于1000，从左向右取10位</span><br><span class="line">子网掩码：255.255.255.192</span><br><span class="line">网段跨度：255-192=63</span><br><span class="line">网络号跨度：256-192=64</span><br><span class="line">1F：网络号为（3-1）*64=128，网段：172.31.0.128-172.31.0.191，网关：172.31.0.190</span><br><span class="line">2F：网络号为（10-1）*64=576，网段：172.31.2.64-172.31.2.127，网关：172.31.2.126</span><br><span class="line">3F：网络号为（15-1）*64=896，网段：172.31.3.128-172.31.3.191，网关：172.31.3.190</span><br><span class="line">4F：网络号为（29-1）*64=1792，网段：172.31.7.0-172.31.7.63，网关：172.31.7.62</span><br></pre></td></tr></table></figure>
+
+<h4 id="四、配置"><a href="#四、配置" class="headerlink" title="四、配置"></a>四、配置</h4><p>在配置单独机器时，我省去了配置机器密码的环节，这样防止在配置过程中出现需要设备密码情况。</p>
+<h5 id="1、在三台二层交换机上配置vlan"><a href="#1、在三台二层交换机上配置vlan" class="headerlink" title="1、在三台二层交换机上配置vlan"></a>1、在三台二层交换机上配置vlan</h5><h5 id="①-对1J"><a href="#①-对1J" class="headerlink" title="① 对1J"></a>① 对1J</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">vlan 11</span><br><span class="line">vlan 111</span><br><span class="line">int f0/24</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 11</span><br><span class="line">int g0/1</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 111</span><br><span class="line">int f0/1</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111</span><br><span class="line">int f0/2</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111</span><br></pre></td></tr></table></figure>
+
+<p>命令解析：首先根据题目要求创建vlan11，vlan111,并且有线部分（f0/24）走vlan11，无线部分（g0/1）走vlan111，再分别让他们从下游的两条线出去（f0/1、f0/2）。</p>
+<p>当这条线上只有一条vlan时，选用access模式（f0/24、g0/1），当一条线上有多条vlan时，选用trunk模式（f0/1、f0/2）。</p>
+<h5 id="②-对12（与1J配置大同小异）"><a href="#②-对12（与1J配置大同小异）" class="headerlink" title="② 对12（与1J配置大同小异）"></a>② 对12（与1J配置大同小异）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">vlan 12</span><br><span class="line">vlan 121</span><br><span class="line">int f0/24</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 12</span><br><span class="line">int g0/1</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 121</span><br><span class="line">int f0/1</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 12,121</span><br><span class="line">int f0/2</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 12,121</span><br></pre></td></tr></table></figure>
+
+<h5 id="③-对Office（与1J、12J配置大同异）"><a href="#③-对Office（与1J、12J配置大同异）" class="headerlink" title="③ 对Office（与1J、12J配置大同异）"></a>③ 对Office（与1J、12J配置大同异）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">vlan 13</span><br><span class="line">vlan 131</span><br><span class="line">int f0/24</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 13</span><br><span class="line">int g0/1</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 131</span><br><span class="line">int f0/1</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 13,131</span><br><span class="line">int f0/2</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 13,131</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、在三台三层交换机上配置vlan"><a href="#2、在三台三层交换机上配置vlan" class="headerlink" title="2、在三台三层交换机上配置vlan"></a>2、在三台三层交换机上配置vlan</h5><h5 id="①-对Core01"><a href="#①-对Core01" class="headerlink" title="① 对Core01"></a>① 对Core01</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">vlan 11</span><br><span class="line">vlan 111</span><br><span class="line">vlan 12</span><br><span class="line">vlan 121</span><br><span class="line">vlan 13</span><br><span class="line">vlan 131</span><br><span class="line">int f0/1</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111</span><br><span class="line">int f0/11</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 12,121</span><br><span class="line">int f0/21</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 13,131</span><br></pre></td></tr></table></figure>
+
+<p>命令解析：三层交换机上的trunk模式要先做封装 <em><strong>“  sw tr en do  ”</strong></em></p>
+<h5 id="②-对Core02"><a href="#②-对Core02" class="headerlink" title="② 对Core02"></a>② 对Core02</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">vlan 11</span><br><span class="line">vlan 111</span><br><span class="line">vlan 12</span><br><span class="line">vlan 121</span><br><span class="line">vlan 13</span><br><span class="line">vlan 131</span><br><span class="line">int f0/2</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111</span><br><span class="line">int f0/12</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 12,121</span><br><span class="line">int f0/22</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 13,131</span><br></pre></td></tr></table></figure>
+
+<h5 id="③-对Core03"><a href="#③-对Core03" class="headerlink" title="③ 对Core03"></a>③ 对Core03</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">vlan 11</span><br><span class="line">vlan 111</span><br><span class="line">vlan 12</span><br><span class="line">vlan 121</span><br><span class="line">vlan 13</span><br><span class="line">vlan 131</span><br></pre></td></tr></table></figure>
+
+<h5 id="3、在三台三层交换机上配置LACP"><a href="#3、在三台三层交换机上配置LACP" class="headerlink" title="3、在三台三层交换机上配置LACP"></a>3、在三台三层交换机上配置LACP</h5><h5 id="①-对Core01-1"><a href="#①-对Core01-1" class="headerlink" title="① 对Core01"></a>① 对Core01</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int range fa0/23 - 24</span><br><span class="line">channel-protocol lacp</span><br><span class="line">channel-group 1 mode active</span><br><span class="line">interface port-channel 1</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111,12,121,13,131</span><br><span class="line"></span><br><span class="line">int range fa0/12 - 13</span><br><span class="line">channel-protocol lacp</span><br><span class="line">channel-group 3 mode active</span><br><span class="line">interface port-channel 3</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111,12,121,13,131</span><br></pre></td></tr></table></figure>
+
+<h5 id="②-对Core02-1"><a href="#②-对Core02-1" class="headerlink" title="② 对Core02"></a>② 对Core02</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int range fa0/23 - 24</span><br><span class="line">channel-protocol lacp</span><br><span class="line">channel-group 1 mode active</span><br><span class="line">interface port-channel 1</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111,12,121,13,131</span><br><span class="line"></span><br><span class="line">int range fa0/14 - 15</span><br><span class="line">channel-protocol lacp</span><br><span class="line">channel-group 2 mode active</span><br><span class="line">interface port-channel 2</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111,12,121,13,131 </span><br></pre></td></tr></table></figure>
+
+<h5 id="③-对Core03-1"><a href="#③-对Core03-1" class="headerlink" title="③ 对Core03"></a>③ 对Core03</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int range fa0/14 - 15</span><br><span class="line">channel-protocol lacp</span><br><span class="line">channel-group 2 mode active</span><br><span class="line">interface port-channel 2</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111,12,121,13,131</span><br><span class="line"></span><br><span class="line">int range fa0/12 - 13</span><br><span class="line">channel-protocol lacp</span><br><span class="line">channel-group 3 mode active</span><br><span class="line">interface port-channel 3</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111,12,121,13,131</span><br></pre></td></tr></table></figure>
+
+<h5 id="4、在Core01和Core02上配置PVST"><a href="#4、在Core01和Core02上配置PVST" class="headerlink" title="4、在Core01和Core02上配置PVST"></a>4、在Core01和Core02上配置PVST</h5><h5 id="①-对Core01-2"><a href="#①-对Core01-2" class="headerlink" title="① 对Core01"></a>① 对Core01</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spanning-tree mode pvst</span><br><span class="line">spanning-tree vlan 11,12,13 root primary</span><br><span class="line">spanning-tree vlan 111,121,131 root secondary</span><br></pre></td></tr></table></figure>
+
+<h5 id="②-对Core02-2"><a href="#②-对Core02-2" class="headerlink" title="② 对Core02"></a>② 对Core02</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spanning-tree mode pvst</span><br><span class="line">spanning-tree vlan 111,121,131 root primary</span><br><span class="line">spanning-tree vlan 11,12,13 root secondary</span><br></pre></td></tr></table></figure>
+
+<h5 id="5、在Core03上把所有vlan放行"><a href="#5、在Core03上把所有vlan放行" class="headerlink" title="5、在Core03上把所有vlan放行"></a>5、在Core03上把所有vlan放行</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int f0/1</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 11,111,12,121,13,131</span><br></pre></td></tr></table></figure>
+
+<h5 id="6、路由器ZhongXin上的配置"><a href="#6、路由器ZhongXin上的配置" class="headerlink" title="6、路由器ZhongXin上的配置"></a>6、路由器ZhongXin上的配置</h5><h5 id="①-配置子接口"><a href="#①-配置子接口" class="headerlink" title="① 配置子接口"></a>① 配置子接口</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">int f0/0.11</span><br><span class="line">en do 11</span><br><span class="line">ip add 10.1.191.254 255.255.240.0</span><br><span class="line">int f0/0.111</span><br><span class="line">en do 111</span><br><span class="line">ip add 10.200.7.254 255.255.248.0</span><br><span class="line">int f0/0.12</span><br><span class="line">en do 12</span><br><span class="line">ip add 10.12.73.254 255.255.254.0</span><br><span class="line">int f0/0.121</span><br><span class="line">en do 121</span><br><span class="line">ip add 10.200.95.254 255.255.248.0</span><br><span class="line">int f0/0.13</span><br><span class="line">en do 13</span><br><span class="line">ip add 10.100.9.254 255.255.255.128</span><br><span class="line">int f0/0.131</span><br><span class="line">en do 131</span><br><span class="line">ip add 10.200.247.254 255.255.248.0</span><br><span class="line">int f0/0</span><br><span class="line">no shut</span><br></pre></td></tr></table></figure>
+
+<h5 id="②-配置-IPV4-DHCP"><a href="#②-配置-IPV4-DHCP" class="headerlink" title="② 配置 IPV4 DHCP"></a>② 配置 IPV4 DHCP</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">ip dhcp pool VLAN11</span><br><span class="line">network 10.1.176.0 255.255.240.0</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 10.1.191.254</span><br><span class="line"></span><br><span class="line">ip dhcp pool VLAN111</span><br><span class="line">network 10.200.0.0 255.255.248.0</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 10.200.7.254</span><br><span class="line"></span><br><span class="line">ip dhcp pool VLAN12</span><br><span class="line">network 10.12.72.0 255.255.254.0</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 10.12.73.254</span><br><span class="line"></span><br><span class="line">ip dhcp pool VLAN121</span><br><span class="line">network 10.200.88.0 255.255.248.0</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 10.200.95.254</span><br><span class="line"></span><br><span class="line">ip dhcp pool VLAN13</span><br><span class="line">network 10.100.9.128 255.255.255.128</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 10.100.9.254</span><br><span class="line"></span><br><span class="line">ip dhcp pool VLAN131</span><br><span class="line">network 10.200.240.0 255.255.248.0</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 10.200.247.254</span><br></pre></td></tr></table></figure>
+
+<h5 id="③-配置IPV6自动分配"><a href="#③-配置IPV6自动分配" class="headerlink" title="③ 配置IPV6自动分配"></a>③ 配置IPV6自动分配</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">ipv6 unicast-routing </span><br><span class="line">ipv6 dhcp pool VLAN12</span><br><span class="line">dns-server 2001:db8:acad:FFFF::1</span><br><span class="line">ipv6 dhcp pool VLAN13</span><br><span class="line">address prefix 2001:db8:acad:100::/64</span><br><span class="line">dns-server 2001:db8:acad:FFFF::1</span><br><span class="line"></span><br><span class="line">int f0/0.11</span><br><span class="line">ipv6 enable</span><br><span class="line">ipv6 address 2001:db8:acad:2::1/64</span><br><span class="line"></span><br><span class="line">int f0/0.12</span><br><span class="line">ipv6 enable</span><br><span class="line">ipv6 address 2001:db8:acad:12::1/64</span><br><span class="line">ipv6 nd other-config-flag</span><br><span class="line">ipv6 dhcp server VLAN12</span><br><span class="line"></span><br><span class="line">int f0/0.13</span><br><span class="line">ipv6 enable</span><br><span class="line">ipv6 address 2001:db8:acad:100::1/64</span><br><span class="line">ipv6 nd other-config-flag</span><br><span class="line">ipv6 nd managed-config-flag</span><br><span class="line">ipv6 dhcp server VLAN13</span><br></pre></td></tr></table></figure>
+
+<p>命令解析：注意根据题意区分<strong>SLACC、SLACC DHCPv6</strong>和<strong>DHCPv6</strong>三种IPV6分配方式的不同。</p>
+<h5 id="④-配置互联"><a href="#④-配置互联" class="headerlink" title="④ 配置互联"></a>④ 配置互联</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int s0/3/0</span><br><span class="line">ip add 192.168.100.1 255.255.255.252</span><br><span class="line">no shut</span><br></pre></td></tr></table></figure>
+
+<h5 id="⑤-配置静态路由"><a href="#⑤-配置静态路由" class="headerlink" title="⑤ 配置静态路由"></a>⑤ 配置静态路由</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ip route 172.30.32.0 255.255.240.0 192.168.100.2</span><br><span class="line">ip route 172.30.96.0 255.255.240.0 192.168.100.2</span><br><span class="line">ip route 172.30.160.0 255.255.240.0 192.168.100.2</span><br><span class="line">ip route 172.30.224.0 255.255.240.0 192.168.100.2</span><br><span class="line">ip route 172.31.0.128 255.255.255.192 192.168.100.2</span><br><span class="line">ip route 172.31.2.64 255.255.255.192 192.168.100.2</span><br><span class="line">ip route 172.31.3.128 255.255.255.192 192.168.100.2</span><br><span class="line">ip route 172.31.7.0 255.255.255.192 192.168.100.2</span><br></pre></td></tr></table></figure>
+
+<p>命令解析：</p>
+<p>① 静态路由的写法是<em><strong>ip route network mask {address or interface}</strong></em></p>
+<p>network:目的网络地址</p>
+<p>mask：子网掩码</p>
+<p>address：到达目的网络经过的下一跳路由器的接口地址</p>
+<p>interface：到达目的网络的本地接口</p>
+<p>② 默认路由配置命令<em><strong>Ip route 0.0.0.0 0.0.0.0 address</strong></em></p>
+<p>0.0.0.0 0.0.0.0：表示任何网络</p>
+<h5 id="7、-中心校区排除故障"><a href="#7、-中心校区排除故障" class="headerlink" title="7、 中心校区排除故障"></a>7、 中心校区排除故障</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sw mo acc</span><br><span class="line">sw acc vl 10</span><br><span class="line">int f0/12</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 20</span><br><span class="line"></span><br><span class="line">vl 10</span><br><span class="line">vl 20</span><br><span class="line">int f0/24</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr </span><br><span class="line">sw tr all vl 10,20</span><br></pre></td></tr></table></figure>
+
+<p>命令解析：题目最后一句话：“ 提示：核心机房服务器网路尚存在问题，需先排除故障 ”。</p>
+<p>首先，在ZhongXin上使用<em><strong>show running-config</strong></em>查看配置情况，发现有这样两条信息：</p>
+<p><img src="errorimage.png"></p>
+<p>再根据，题目里的另一句话：“ 子接口编号与Vlan号一致 ”，则说明一定有vlan10和vlan20在ZhongXin路由器上，再查看DNS服务器和HTTP服务器的IP地址分辨出vlan10在DNS服务器那一边，vlan20在HTTP服务器那一边，遂进行以上配置。</p>
+<p><em><strong>至此中心校区这边就配置完毕了</strong></em>（注意机器的密码啥的没有配置，会在后面说）</p>
+<h5 id="8、配置舜耕校区的二层交换机"><a href="#8、配置舜耕校区的二层交换机" class="headerlink" title="8、配置舜耕校区的二层交换机"></a>8、配置舜耕校区的二层交换机</h5><h5 id="①-SW-WenShiLou-1F-2F"><a href="#①-SW-WenShiLou-1F-2F" class="headerlink" title="① SW-WenShiLou-1F-2F"></a>① SW-WenShiLou-1F-2F</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">hostname SW-WenShiLou-1F-2F</span><br><span class="line">vlan 10</span><br><span class="line">vlan 20</span><br><span class="line">int f0/3</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 10</span><br><span class="line">int f0/7</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 20</span><br><span class="line">int f0/1</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 10,20</span><br></pre></td></tr></table></figure>
+
+<h5 id="②-SW-WenShiLou-3F-4F"><a href="#②-SW-WenShiLou-3F-4F" class="headerlink" title="② SW-WenShiLou-3F-4F"></a>② SW-WenShiLou-3F-4F</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">hostname SW-WenShiLou-3F-4F</span><br><span class="line">vlan 30</span><br><span class="line">vlan 40</span><br><span class="line">int f0/7</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 30</span><br><span class="line">int f0/11</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 40</span><br><span class="line">int f0/3</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 30,40</span><br></pre></td></tr></table></figure>
+
+<h5 id="③-SW-TuShuGuan-1F-2F"><a href="#③-SW-TuShuGuan-1F-2F" class="headerlink" title="③ SW-TuShuGuan-1F-2F"></a>③ SW-TuShuGuan-1F-2F</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">hostname SW-TuShuGuan-1F-2F</span><br><span class="line">vlan 110</span><br><span class="line">vlan 120</span><br><span class="line">int f0/22</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 110</span><br><span class="line">int f0/17</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 120</span><br><span class="line">int f0/21</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 110,120</span><br></pre></td></tr></table></figure>
+
+<h5 id="④-SW-TuShuGuan-3F-4F"><a href="#④-SW-TuShuGuan-3F-4F" class="headerlink" title="④ SW-TuShuGuan-3F-4F"></a>④ SW-TuShuGuan-3F-4F</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">hostname SW-TuShuGuan-3F-4F</span><br><span class="line">vlan 130</span><br><span class="line">vlan 140</span><br><span class="line">int f0/15</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 130</span><br><span class="line">int f0/18</span><br><span class="line">sw mo acc</span><br><span class="line">sw acc vl 140</span><br><span class="line">int f0/12</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 130,140</span><br></pre></td></tr></table></figure>
+
+<h5 id="9、配置舜耕校区三层交换机"><a href="#9、配置舜耕校区三层交换机" class="headerlink" title="9、配置舜耕校区三层交换机"></a>9、配置舜耕校区三层交换机</h5><h5 id="①-对SW-WenShiLou"><a href="#①-对SW-WenShiLou" class="headerlink" title="① 对SW-WenShiLou"></a>① 对SW-WenShiLou</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">hostname SW-WenShiLou</span><br><span class="line">vlan 10</span><br><span class="line">vlan 20</span><br><span class="line">vlan 30</span><br><span class="line">vlan 40</span><br><span class="line">int f0/1</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 10,20</span><br><span class="line">int f0/3</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 30,40</span><br><span class="line">int  fa0/2</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 10,20,30,40</span><br></pre></td></tr></table></figure>
+
+<h5 id="②-对SW-TuShuGuan"><a href="#②-对SW-TuShuGuan" class="headerlink" title="② 对SW-TuShuGuan"></a>② 对SW-TuShuGuan</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">hostname SW-TuShuGuan</span><br><span class="line">vlan 110</span><br><span class="line">vlan 120</span><br><span class="line">vlan 130</span><br><span class="line">vlan 140</span><br><span class="line">int f0/7</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 110,120</span><br><span class="line">int f0/18</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 130,140</span><br><span class="line">int  fa0/23</span><br><span class="line">sw tr en do</span><br><span class="line">sw mo tr</span><br><span class="line">sw tr all vl 110,120,130,140</span><br></pre></td></tr></table></figure>
+
+<h5 id="10、配置路由器R2-Center-East"><a href="#10、配置路由器R2-Center-East" class="headerlink" title="10、配置路由器R2-Center-East"></a>10、配置路由器R2-Center-East</h5><h5 id="①-配置子接口-1"><a href="#①-配置子接口-1" class="headerlink" title="① 配置子接口"></a>① 配置子接口</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">hostname R2-Center-East</span><br><span class="line">int g0/0.10</span><br><span class="line">en do 10</span><br><span class="line">ip add 172.30.47.254 255.255.240.0</span><br><span class="line">int g0/0.20</span><br><span class="line">en do 20</span><br><span class="line">ip add 172.30.111.254 255.255.240.0</span><br><span class="line">int g0/0.30</span><br><span class="line">en do 30</span><br><span class="line">ip add 172.30.175.254 255.255.240.0</span><br><span class="line">int g0/0.40</span><br><span class="line">en do 40</span><br><span class="line">ip add 172.30.239.254 255.255.240.0</span><br><span class="line">int g0/2.110</span><br><span class="line">en do 110</span><br><span class="line">ip add 172.31.0.190 255.255.255.192</span><br><span class="line">int g0/2.120</span><br><span class="line">en do 120</span><br><span class="line">ip add 172.31.2.126 255.255.255.192</span><br><span class="line">int g0/2.130</span><br><span class="line">en do 130</span><br><span class="line">ip add 172.31.3.190 255.255.255.192</span><br><span class="line">int g0/2.140</span><br><span class="line">en do 140</span><br><span class="line">ip add 172.31.7.62 255.255.255.192</span><br><span class="line"></span><br><span class="line">int g0/0</span><br><span class="line">no shut</span><br><span class="line">int g0/2</span><br><span class="line">no shut</span><br></pre></td></tr></table></figure>
+
+<h5 id="②-配置IPV4-DHCP"><a href="#②-配置IPV4-DHCP" class="headerlink" title="② 配置IPV4 DHCP"></a>② 配置IPV4 DHCP</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">ip dhcp pool VLAN10</span><br><span class="line">network 172.30.32.0 255.255.240.0</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 172.30.47.254</span><br><span class="line">ip dhcp pool VLAN20</span><br><span class="line">network 172.30.96.0 255.255.240.0</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 172.30.111.254</span><br><span class="line">ip dhcp pool VLAN30</span><br><span class="line">network 172.30.160.0 255.255.240.0</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 172.30.175.254</span><br><span class="line">ip dhcp pool VLAN40</span><br><span class="line">network 172.30.224.0 255.255.240.0</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 172.30.239.254</span><br><span class="line"></span><br><span class="line">ip dhcp pool VLAN110</span><br><span class="line">network 172.31.0.128 255.255.255.192</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 172.31.0.190</span><br><span class="line">ip dhcp pool VLAN120</span><br><span class="line">network 172.31.2.64 255.255.255.192</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 172.31.2.126</span><br><span class="line">ip dhcp pool VLAN130</span><br><span class="line">network 172.31.3.128 255.255.255.192</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 172.31.3.190</span><br><span class="line">ip dhcp pool VLAN140</span><br><span class="line">network 172.31.7.0 255.255.255.192</span><br><span class="line">dns-server 202.194.64.1</span><br><span class="line">default-router 172.31.7.62</span><br></pre></td></tr></table></figure>
+
+<h5 id="③-配置互联"><a href="#③-配置互联" class="headerlink" title="③ 配置互联"></a>③ 配置互联</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int s0/3/0</span><br><span class="line">ip add 192.168.100.2 255.255.255.252</span><br><span class="line">no sh</span><br></pre></td></tr></table></figure>
+
+<h5 id="④-配置静态路由（缺省路由）"><a href="#④-配置静态路由（缺省路由）" class="headerlink" title="④ 配置静态路由（缺省路由）"></a>④ 配置静态路由（缺省路由）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip route 0.0.0.0 0.0.0.0 192.168.100.1</span><br></pre></td></tr></table></figure>
+
+<h5 id="11、密码配置"><a href="#11、密码配置" class="headerlink" title="11、密码配置"></a>11、密码配置</h5><p>密码的配置根据题意除了机器的命名，配置都是一样的，此处以SW-1J为例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">hostname 1J</span><br><span class="line">enable secret UJN1948</span><br><span class="line">line console 0</span><br><span class="line">password Console1948</span><br><span class="line">login</span><br><span class="line">line vty 0 4</span><br><span class="line">password Telnet1948</span><br><span class="line">login</span><br><span class="line">service password-encryption </span><br></pre></td></tr></table></figure>
+
+<h4 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h4><p>本实验中可能子网掩码有算错的，不想再找错误了 ^_^ !</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Cisco/" rel="tag"># Cisco</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/31/%E5%8D%83%E8%AF%8D%E7%99%BE%E7%BB%83Unit16-20/" rel="prev" title="千词百练Unit16-20">
+                  <i class="fa fa-chevron-left"></i> 千词百练Unit16-20
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杜沐</span>
+</div>
+<div class="busuanzi-count">
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
