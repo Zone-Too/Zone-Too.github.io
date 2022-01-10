@@ -669,7 +669,7 @@
 <h5 id="11、密码配置"><a href="#11、密码配置" class="headerlink" title="11、密码配置"></a>11、密码配置</h5><p>密码的配置根据题意除了机器的命名，配置都是一样的，此处以SW-1J为例：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">en</span><br><span class="line">conf t</span><br><span class="line">hostname 1J</span><br><span class="line">enable secret UJN1948</span><br><span class="line">line console 0</span><br><span class="line">password Console1948</span><br><span class="line">login</span><br><span class="line">line vty 0 4</span><br><span class="line">password Telnet1948</span><br><span class="line">login</span><br><span class="line">service password-encryption </span><br></pre></td></tr></table></figure>
 
-<h4 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h4><p>本实验中可能子网掩码有算错的，不想再找错误了 ^_^ !</p>
+<h4 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h4><p>可能子网划分有算错的，不想再找错误了 ^_^ !</p>
 ]]></content>
       <categories>
         <category>Cisco</category>
